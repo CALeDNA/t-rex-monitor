@@ -39,7 +39,7 @@ jobs:
 
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/ben-error-rule.yml /etc/prometheus/ben-error-rule.yml"
 
-            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/loki-local-config.yaml /etc/loki-local-config.yaml"
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/loki-local-config.yml /etc/loki-local-config.yml"
 
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/loki.service /etc/systemd/system/loki.service"
 

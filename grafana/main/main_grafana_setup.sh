@@ -100,7 +100,7 @@ sudo mv loki-linux-amd64 /usr/local/bin/loki
 loki --version
 
 sudo mkdir -p /data/loki
-sudo cp loki-local-config.yaml /etc/loki-local-config.yaml
+sudo cp loki-local-config.yml /etc/loki-local-config.yml
 sudo cp loki.service /etc/systemd/system/loki.service
 
 curl -O -L "https://github.com/grafana/loki/releases/download/v$PROMTAIL_VERSION/promtail-linux-amd64.zip"
