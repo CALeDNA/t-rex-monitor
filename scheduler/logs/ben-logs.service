@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 User=ubuntu
-ExecStart=/bin/bash /etc/ben/error_counter.sh
+ExecStart=/bin/bash /home/ubuntu/t-rex-monitor/scheduler/logs/error_counter.sh
 Type=simple
 Restart=on-failure
 

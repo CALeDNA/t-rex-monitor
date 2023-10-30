@@ -1,6 +1,6 @@
 #! /bin/bash
 # main_grafana_setup.sh needs to run before this
-BEN_VERSION='2.14'
+BEN_VERSION='2.16'
 
 # ben setup
 wget https://www.poirrier.ca/ben/ben-$BEN_VERSION.tar.gz
@@ -14,8 +14,7 @@ sudo mkdir -p /etc/ben/jobs
 sudo mkdir -p /etc/ben/queue
 sudo mv ben/ben /etc/ben/ben
 
-sudo cp node_util.py error_counter.sh /etc/ben/
-sudo cp ben-jobs.service ben-jobs.timer ben-logs.service ben-logs.timer /etc/systemd/system
+sudo cp jobs/ben-jobs.service jobs/ben-jobs.timer supabase/ben-supabase.service supabase/ben-supabase.timer logs/ben-logs.service logs/ben-logs.timer /etc/systemd/system
 
 # start ben
 /etc/ben/ben server --snapshot /etc/ben/queue/ecopcr.ini -s /tmp/ben-ecopcr -d
