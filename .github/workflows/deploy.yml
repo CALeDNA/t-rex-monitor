@@ -28,6 +28,7 @@ jobs:
         run: |
           echo "Attempting to deploy to $DEPLOY_ENVIRONMENT environment"
           echo "Copying files to server located at $SSH_ADDRESS"
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "mkdir -p /home/${{ env.SSH_USER }}/t-rex-monitor"
           scp -v -o StrictHostKeyChecking=no -r ./* ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }}:/home/${{ env.SSH_USER }}/t-rex-monitor
           echo "Finished deploying to $DEPLOY_ENVIRONMENT environment"
       - name: Move service files
