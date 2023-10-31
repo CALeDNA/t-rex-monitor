@@ -72,7 +72,7 @@ jobs:
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/logs/ben-logs.timer /etc/systemd/system/ben-logs.timer"
 
             echo "Finished moving service and config files."
-      - name: Restart service and workers
+      - name: Restart services
         run : |
             echo "Restarting Grafana and scheduler services"
 
