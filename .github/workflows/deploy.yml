@@ -1,0 +1,90 @@
+name: Build & Test
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  deploy:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    env:
+      SSH_ADDRESS: ${{ github.ref == 'refs/heads/main' && secrets.SSH_ADDRESS_PROD || secrets.SSH_ADDRESS }}
+      SSH_USER: ${{ github.ref == 'refs/heads/main' && secrets.SSH_USER_PROD || secrets.SSH_USER }}
+      SSH_KEY: ${{ github.ref == 'refs/heads/main' && secrets.SSH_KEY_PROD || secrets.SSH_KEY }}
+      DEPLOY_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'PRODUCTION' || 'STAGING' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ env.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 700 ~/.ssh/id_rsa
+      - name: Deploy to server
+        run: |
+          echo "Attempting to deploy to $DEPLOY_ENVIRONMENT environment"
+          echo "Copying files to server located at $SSH_ADDRESS"
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "mkdir -p /home/${{ env.SSH_USER }}/t-rex-monitor"
+          scp -v -o StrictHostKeyChecking=no -r ./* ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }}:/home/${{ env.SSH_USER }}/t-rex-monitor
+          echo "Finished deploying to $DEPLOY_ENVIRONMENT environment"
+      - name: Move service files
+        run: |
+            echo "Moving Grafana service and config files to correct path"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/alertmanager.yml /etc/alertmanager/alertmanager.yml"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/ben-error-rule.yml /etc/prometheus/ben-error-rule.yml"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/loki-local-config.yml /etc/loki-local-config.yml"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/loki.service /etc/systemd/system/loki.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/node_exporter.service /etc/systemd/system/node_exporter.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/overview.json /var/lib/grafana/dashboards/overview.json"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/prometheus.service /etc/systemd/system/prometheus.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/prometheus.yml /etc/prometheus"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/promtail-local-config.yml /etc/promtail-local-config.yml"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/promtail.service /etc/systemd/system/promtail.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/pushgateway.service /etc/systemd/system/pushgateway.service"
+
+            echo "Moving Ben scheduler service and config files to correct path"
+            
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/jobs/ben-jobs.service /etc/systemd/system/ben-jobs.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/jobs/ben-jobs.timer /etc/systemd/system/ben-jobs.timer"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/ben-supabase.service /etc/systemd/system/ben-supabase.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/ben-supabase.timer /etc/systemd/system/ben-supabase.timer"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/logs/ben-logs.service /etc/systemd/system/ben-logs.service"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/logs/ben-logs.timer /etc/systemd/system/ben-logs.timer"
+
+            echo "Finished moving service and config files."
+      - name: Restart service and workers
+        run : |
+            echo "Restarting Grafana and scheduler services"
+
+            echo "Restarting Grafana services"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo systemctl daemon-reload; sudo systemctl restart prometheus.service; sudo systemctl restart node_exporter.service; sudo systemctl restart pushgateway.service; sudo systemctl restart alertmanager.service; sudo systemctl restart loki.service; sudo systemctl restart promtail.service; sudo systemctl restart grafana-server.service;"
+
+            echo "Restarting Ben scheduler services"
+
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo systemctl daemon-reload; sudo systemctl restart ben-logs.service; sudo systemctl restart ben-logs.timer; sudo systemctl restart ben-supabase.service; sudo systemctl restart ben-supabase.timer; sudo systemctl restart ben-jobs.service; sudo systemctl restart ben-jobs.timer;"
+
+            echo "Finished restarting services"
+      - name: Clean up SSH key
+        run: |
+            rm -f ~/.ssh/id_rsa
