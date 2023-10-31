@@ -110,7 +110,7 @@ rm promtail-linux-amd64.zip
 sudo mv promtail-linux-amd64 /usr/local/bin/promtail
 promtail --version
 
-sudo cp promtail-local-config.yaml /etc/promtail-local-config.yaml
+sudo cp promtail-local-config.yml /etc/promtail-local-config.yml
 sudo cp promtail.service /etc/systemd/system/promtail.service
 
 sudo systemctl daemon-reload

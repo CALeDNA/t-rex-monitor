@@ -51,7 +51,7 @@ jobs:
 
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/prometheus.yml /etc/prometheus"
 
-            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/promtail-local-config.yaml /etc/promtail-local-config.yaml"
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/promtail-local-config.yml /etc/promtail-local-config.yml"
 
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/grafana/main/promtail.service /etc/systemd/system/promtail.service"
 
