@@ -9,6 +9,7 @@ Type=forking
 WorkingDirectory=/home/ubuntu/t-rex-monitor/scheduler/servers
 Environment="PATH=/usr/local/bin:/usr/bin:/bin:/home/ubuntu/miniconda/envs/webhook/bin"
 ExecStart=/bin/bash ./ben-servers.sh "qc" "/tmp/ben-qc"
+TimeoutSec=600
 Restart=never
 RestartSec=5s
 
