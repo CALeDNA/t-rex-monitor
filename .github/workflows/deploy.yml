@@ -72,7 +72,7 @@ jobs:
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/logs/ben-logs.timer /etc/systemd/system/ben-logs.timer"
 
             echo "Finished moving service and config files."
-      - name: Restart service and workers
+      - name: Restart services
         run : |
             echo "Restarting Grafana and scheduler services"
 
@@ -85,6 +85,22 @@ jobs:
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo systemctl daemon-reload; sudo systemctl restart ben-logs.service; sudo systemctl restart ben-logs.timer; sudo systemctl restart ben-supabase.service; sudo systemctl restart ben-supabase.timer; sudo systemctl restart ben-jobs.service; sudo systemctl restart ben-jobs.timer;"
 
             echo "Finished restarting services"
+      - name: Move and Restart Ben Server Services
+        run : |
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} '
+          if [ -f "/etc/systemd/system/ben-ecopcr-server.service" ]; then
+            echo "Ben server service files already moved. Skipping setup step."
+          else
+            sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/servers/*.service /etc/systemd/system/
+            sudo systemctl daemon-reload
+            for service_file in /etc/systemd/system/ben-*-server.service; do
+                if [ -e "$service_file" ]; then
+                    sudo systemctl enable "$(basename "$service_file")"
+                    sudo systemctl start "$(basename "$service_file")"
+                fi
+            done
+          fi
+          '
       - name: Clean up SSH key
         run: |
             rm -f ~/.ssh/id_rsa
