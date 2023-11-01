@@ -6,7 +6,7 @@ Requires=grafana-server.service
 [Service]
 User=ubuntu
 WorkingDirectory=/home/ubuntu/t-rex-monitor/scheduler/jobs
-Environment="PATH=/usr/local/bin:/usr/bin:/bin:/home/ubuntu/.conda/envs/webhook/bin"
+Environment="PATH=/usr/local/bin:/usr/bin:/bin:/home/ubuntu/miniconda/envs/webhook/bin"
 ExecStart=/usr/local/miniconda/bin/python3 node_util.py
 Restart=always
 RestartSec=5s
