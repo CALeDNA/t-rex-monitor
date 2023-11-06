@@ -111,7 +111,7 @@ jobs:
           fi"
       - name: Create or update Conda environment
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "export PATH=/home/${{ env.SSH_USER }}/miniconda/bin:\$PATH; conda env list | grep -q '^supabase' || conda env create -n supabase -f /home/${{ env.SSH_USER }}/t-rex-flask/scheduler/supabase/env.yml || conda env update -n supabase -f /home/${{ env.SSH_USER }}/t-rex-flask/scheduler/supabase/env.yml"
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "export PATH=/home/${{ env.SSH_USER }}/miniconda/bin:\$PATH; conda env list | grep -q '^supabase' || conda env create -n supabase -f /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/env.yml || conda env update -n supabase -f /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/env.yml"
       - name: Clean up SSH key
         run: |
             rm -f ~/.ssh/id_rsa
