@@ -101,6 +101,17 @@ jobs:
             done
           fi
           '
+      - name: Install Miniconda (if not already installed)
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} " 
+          if [ ! -d \"/home/${{ env.SSH_USER }}/miniconda\" ]; then \
+            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh; \
+            bash miniconda.sh -b -p /home/${{ env.SSH_USER }}/miniconda; \
+            echo 'export PATH=/home/${{ env.SSH_USER }}/miniconda/bin:\$PATH' >> /home/${{ env.SSH_USER }}/.bashrc; \
+          fi"
+      - name: Create or update Conda environment
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "export PATH=/home/${{ env.SSH_USER }}/miniconda/bin:\$PATH; conda env list | grep -q '^supabase' || conda env create -n supabase -f /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/env.yml || conda env update -n supabase -f /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/env.yml"
       - name: Clean up SSH key
         run: |
             rm -f ~/.ssh/id_rsa
