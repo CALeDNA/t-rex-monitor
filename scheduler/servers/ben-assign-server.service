@@ -1,7 +1,6 @@
 [Unit]
 Description=Ben Assign Job Scheduler Server
 After=network-online.target
-Requires=grafana-server.service
 
 [Service]
 User=ubuntu
@@ -10,7 +9,7 @@ WorkingDirectory=/home/ubuntu/t-rex-monitor/scheduler/servers
 Environment="PATH=/usr/local/bin:/usr/bin:/bin:/home/ubuntu/miniconda/envs/webhook/bin"
 ExecStart=/bin/bash ./ben-servers.sh "assign" "/tmp/ben-assign"
 TimeoutSec=600
-Restart=never
+Restart=no
 RestartSec=5s
 
 [Install]
