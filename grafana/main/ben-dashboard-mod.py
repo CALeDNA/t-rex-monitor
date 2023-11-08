@@ -1,9 +1,8 @@
 import json
-import ast
 import argparse
 import requests
-import urllib.request
 import copy
+import re
 
 """"
 Modifies panel relating to Ben Job Scheduler.
@@ -46,23 +45,31 @@ nodes=[]
 for line in metrics.split("\n"):
     if line == "" or line.startswith('#') or line.startswith("ben"):
         continue
-    nodes.append(line.split()[0])
+    match = re.match(r'([^0-9]+)\d*_ben_([^_]+)_', line.split()[0])
+    # example: newick01_ben_tronko_size
+    # group 1: first word (i.e newick)
+    # group 2: word after ben (i.e tronko)
+    if match:
+        if match.group(1) == match.group(2):
+            nodes.append(line.split()[0])
+print(nodes)
 
 for panel in dashboard["panels"]:
     try:
-        if(panel["title"] == "Node Utilization"):
-            print(nodes)
-            currRefId='A' #fix? shouldnt be able to reach Z. JS2 max of 25 instances
-            query=panel["targets"][0]
-            newTargets=[]
-            for i in range(0,len(nodes), 2):
-                source='_'.join(nodes[i].split("_")[0:-1])
-                query["expr"]=f"{nodes[i]} / {nodes[i+1]}"
-                query["legendFormat"]=source
-                query["refId"]=currRefId
-                currRefId=chr(ord(currRefId)+1)
-                newTargets.append(copy.deepcopy(query))
-                panel["targets"]=newTargets
+        if(panel["title"] == "Ben Server"):
+            for panel_ in panel["panels"]:
+                if(panel_["title"] == "Node Utilization"):
+                    currRefId='A' #fix? shouldnt be able to reach Z. JS2 max of 25 instances
+                    query=panel_["targets"][0]
+                    newTargets=[]
+                    for i in range(0,len(nodes), 2):
+                        source='_'.join(nodes[i].split("_")[0:-1])
+                        query["expr"]=f"{nodes[i]} / {nodes[i+1]}"
+                        query["legendFormat"]=source
+                        query["refId"]=currRefId
+                        currRefId=chr(ord(currRefId)+1)
+                        newTargets.append(copy.deepcopy(query))
+                        panel_["targets"]=newTargets
     except:
         continue
 

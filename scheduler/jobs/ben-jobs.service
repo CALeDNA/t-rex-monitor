@@ -1,7 +1,6 @@
 [Unit]
 Description=Ben Jobs Service
 After=network-online.target
-Requires=grafana-server.service
 
 [Service]
 User=ubuntu
