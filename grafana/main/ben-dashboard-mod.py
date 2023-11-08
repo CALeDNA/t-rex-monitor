@@ -1,9 +1,8 @@
 import json
-import ast
 import argparse
 import requests
-import urllib.request
 import copy
+import re
 
 """"
 Modifies panel relating to Ben Job Scheduler.
@@ -46,7 +45,13 @@ nodes=[]
 for line in metrics.split("\n"):
     if line == "" or line.startswith('#') or line.startswith("ben"):
         continue
-    nodes.append(line.split()[0])
+    match = re.match(r'([^0-9]+)\d*_ben_([^_]+)_', line.split()[0])
+    # example: newick01_ben_tronko_size
+    # group 1: first word (i.e newick)
+    # group 2: word after ben (i.e tronko)
+    if match:
+        if match.group(1) == match.group(2):
+            nodes.append(line.split()[0])
 print(nodes)
 
 for panel in dashboard["panels"]:
