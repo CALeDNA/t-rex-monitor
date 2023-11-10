@@ -5,7 +5,8 @@ After=network-online.target
 [Service]
 User=ubuntu
 WorkingDirectory=/home/ubuntu/t-rex-monitor/scheduler/supabase
-ExecStart=/bin/bash -c 'source /usr/local/miniconda/bin/activate supabase && ./supabase_ben.sh'
+Environment="PATH=/usr/local/bin:/usr/bin:/bin:/home/ubuntu/miniconda/envs/supabase/bin"
+ExecStart=/bin/bash -c './supabase_ben.sh'
 Type=simple
 Restart=on-failure
 
