@@ -1,7 +1,5 @@
 #! /bin/bash
 
-
-CONFIG="/home/ubuntu/.ssh/config"
 USER="ubuntu"
 REMOTE_PATH=/etc/ben/ben
 START=0
@@ -9,11 +7,9 @@ NODES=4
 NAME="chunk"
 BENSERVER=/tmp/ben-ubuntu
 VMNUMBER=0
-while getopts "h:c:s:n:m:u:e:b:" opt; do
+while getopts "h:s:n:m:u:e:b:" opt; do
     case $opt in
         h) HOSTNAME="$OPTARG"
-        ;;
-        c) CONFIG="$OPTARG"
         ;;
         s) START="$OPTARG"
         ;;
