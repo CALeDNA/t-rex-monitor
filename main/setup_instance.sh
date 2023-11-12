@@ -109,5 +109,5 @@ do
 
     echo $VMNAME$chunk >> hostnames
     
-    sleep 30
+    sleep 60
 done

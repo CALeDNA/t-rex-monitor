@@ -52,6 +52,7 @@ while getopts "u:f:i:k:j:n:m:b:s:w:v:c:p:o:e:" opt; do
 done
 
 BASEDIR="$HOME/t-rex-monitor"
+SETUP_CONFIG="$BASEDIR/vm_vars.sh"
 
 # check if hostnames exists and get length
 if [ -f "hostnames" ]; then
@@ -64,7 +65,7 @@ fi
 
 
 mv hostnames $BASEDIR/main
-cd ./crux/main
+cd $BASEDIR/main
 # 1) run setup instance
 if [[ ! -z ${VOLUME} ]]; then
     ./setup_instance.sh -u $USER -f $FLAVOR -i $IMAGE -k $PRIVATEKEY -j $JSCRED -n $NUMINSTANCES -m $VMNAME -b $VMNUMBER -s $SECURITY -w $NETWORK -v $VOLUME -c $SSHCONFIG
@@ -72,7 +73,7 @@ else
     ./setup_instance.sh -u $USER -f $FLAVOR -i $IMAGE -k $PRIVATEKEY -j $JSCRED -n $NUMINSTANCES -m $VMNAME -b $VMNUMBER -s $SECURITY -w $NETWORK -c $SSHCONFIG
 fi
 
-pssh_command="./crux-pssh.sh -h hostnames -c $VARS -u $USER -s $START"
+pssh_command="./crux-pssh.sh -h hostnames -c $VARS -C $SETUP_CONFIG -u $USER -s $START"
 # 2) setup docker images on client VMs
 if [[ $FLAVOR == "m3.xl" ]]; then
     pssh_command="$pssh_command -a"
@@ -91,7 +92,7 @@ cd $BASEDIR/grafana/main
 mv hostnames $BASEDIR/scheduler
 cd $BASEDIR/scheduler
 # 4) setup ben
-./ben.sh -h hostnames -c $SSHCONFIG -s $START -n $NODES -m $VMNAME -u $USER -e $BENSERVER -b $VMNUMBER
+./ben.sh -h hostnames -s $START -n $NODES -m $VMNAME -u $USER -e $BENSERVER -b $VMNUMBER
 
 # move files back to basedir
 mv hostnames $BASEDIR
