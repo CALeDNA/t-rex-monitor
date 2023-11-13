@@ -109,5 +109,25 @@ do
 
     echo $VMNAME$chunk >> hostnames
     
-    sleep 60
+    # Wait up to 5 minutes for SSH to be ready
+    echo "Waiting for SSH to be ready on $VMNAME$chunk..."
+    start_time=$(date +%s)
+    while :
+    do
+        current_time=$(date +%s)
+        elapsed=$(( current_time - start_time ))
+
+        if [[ $elapsed -ge 300 ]]; then
+            echo "Timeout: SSH not ready after 5 minutes on $VMNAME$chunk."
+            break
+        fi
+
+        if ssh -i /home/$USER/.ssh/$PRIVATEKEY -o ConnectTimeout=5 -o StrictHostKeyChecking=no $USER@$ip_address echo "SSH is up" > /dev/null 2>&1; then
+            echo "SSH is ready on $VMNAME$chunk."
+            break
+        else
+            echo "Still waiting for SSH on $VMNAME$chunk..."
+            sleep 5
+        fi
+    done
 done
