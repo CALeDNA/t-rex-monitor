@@ -30,6 +30,7 @@ jobs:
           echo "Copying files to server located at $SSH_ADDRESS"
           ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "mkdir -p /home/${{ env.SSH_USER }}/t-rex-monitor"
           scp -v -o StrictHostKeyChecking=no -r ./* ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }}:/home/${{ env.SSH_USER }}/t-rex-monitor
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mkdir -p /etc/ben/queue && sudo mkdir -p /etc/ben/output && sudo mkdir -p /etc/ben/json"
           echo "Finished deploying to $DEPLOY_ENVIRONMENT environment"
       - name: Move service files
         run: |
@@ -67,6 +68,8 @@ jobs:
 
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/ben-supabase.timer /etc/systemd/system/ben-supabase.timer"
 
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/supabase/ben-json.service /etc/systemd/system/ben-json.service"
+
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/logs/ben-logs.service /etc/systemd/system/ben-logs.service"
 
             ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo mv /home/${{ env.SSH_USER }}/t-rex-monitor/scheduler/logs/ben-logs.timer /etc/systemd/system/ben-logs.timer"
@@ -82,7 +85,7 @@ jobs:
 
             echo "Restarting Ben scheduler services"
 
-            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo systemctl daemon-reload; sudo systemctl restart ben-logs.service; sudo systemctl restart ben-logs.timer; sudo systemctl restart ben-supabase.service; sudo systemctl restart ben-supabase.timer; sudo systemctl restart ben-jobs.service; sudo systemctl restart ben-jobs.timer;"
+            ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_ADDRESS }} "sudo systemctl daemon-reload; sudo systemctl restart ben-logs.service; sudo systemctl restart ben-logs.timer; sudo systemctl restart ben-supabase.service; sudo systemctl restart ben-supabase.timer; sudo systemctl restart ben-json.service; sudo systemctl restart ben-jobs.service; sudo systemctl restart ben-jobs.timer;"
 
             echo "Finished restarting services"
       - name: Move and Restart Ben Server Services
