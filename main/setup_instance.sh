@@ -11,6 +11,7 @@ SECURITY=""
 VOLUME=""
 VMNAME="chunk"
 VMNUMBER=0
+SETUP_CONFIG="/home/ubuntu/t-rex-monitor/vm_vars.sh"
 while getopts "u:f:i:k:j:n:m:b:s:w:v:c:" opt; do
     case $opt in
         u) USER="$OPTARG"
@@ -35,7 +36,7 @@ while getopts "u:f:i:k:j:n:m:b:s:w:v:c:" opt; do
         ;;
         v) VOLUME="$OPTARG"
         ;;
-        c) SSHCONFIG="$OPTARG" # SSH config file: /home/ubuntu/.ssh/config
+        c) SSHCONFIG="$OPTARG" # SSH config file: $HOME/.ssh/config
         ;;
     esac
 done
@@ -55,7 +56,8 @@ fi
 START=$VMNUMBER
 END=$(( VMNUMBER + NUMINSTANCES))
 
-source ${JSCRED}
+source $JSCRED
+source $SETUP_CONFIG
 
 
 # create and start an instance
@@ -119,6 +121,10 @@ do
 
         if [[ $elapsed -ge 300 ]]; then
             echo "Timeout: SSH not ready after 5 minutes on $VMNAME$chunk."
+            echo "Deleting server $VMNAME$chunk..."
+            ./dismantle_instance.sh -j $JSCRED -h hostnames -m $VMNAME$chunk -c $SSHCONFIG -d $DATASOURCE
+            # del ip in case it wasn't attached
+            openstack server remove floating ip $VMNAME$chunk $ip_address
             break
         fi
 
