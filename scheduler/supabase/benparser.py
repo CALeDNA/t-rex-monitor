@@ -17,6 +17,7 @@ for queue in QUEUES:
                 key = line.split(" = ")[0].strip()
                 value = line.split(" = ")[1].strip()
                 job[key] = value
+        jobs.append(job)
 
     # Filter out empty dictionaries
     jobs = [d for d in jobs if d]
