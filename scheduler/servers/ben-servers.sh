@@ -4,7 +4,7 @@ declare -A SERVER_MAP
 
 USER="ubuntu"
 REMOTE_PATH=/etc/ben/ben
-HOSTNAME="/home/ubuntu/crux/hostnames"
+HOSTNAME="/home/ubuntu/t-rex-monitor/hostnames"
 
 SERVER_MAP=(
     ["/tmp/ben-ecopcr"]="/tmp/ben-blast"
