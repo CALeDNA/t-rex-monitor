@@ -16,6 +16,8 @@ for queue in QUEUES:
             else:
                 key = line.split(" = ")[0].strip()
                 value = line.split(" = ")[1].strip()
+                if key == "command":
+                    continue
                 job[key] = value
         jobs.append(job)
 
