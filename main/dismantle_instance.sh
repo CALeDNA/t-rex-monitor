@@ -36,7 +36,7 @@ fi
 source ${JSCRED}
 
 # get volume id
-volume_id=$(openstack server show $NAME -c volumes_attached -f json | jq -r '.volumes_attached[0].id')
+volume_id=$(openstack server show blast00 -c volumes_attached -f json | jq -r '.volumes_attached | split("=")[1]')
 # get corresponding ip address
 ip_address=$(grep -A 5 $NAME $SSHCONFIG | grep "HostName" | awk '{print $2}')
 # remove IP from instance
