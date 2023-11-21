@@ -120,7 +120,7 @@ do
         elapsed=$(( current_time - start_time ))
 
         if [[ $elapsed -ge 300 ]]; then
-            echo "Timeout: SSH not ready after 5 minutes on $VMNAME$chunk."
+            echo "Timeout: SSH or Network not ready after 5 minutes on $VMNAME$chunk."
             echo "Deleting server $VMNAME$chunk..."
             ./dismantle_instance.sh -j $JSCRED -h hostnames -m $VMNAME$chunk -c $SSHCONFIG -d $DATASOURCE
             # del ip in case it wasn't attached
@@ -130,7 +130,14 @@ do
 
         if ssh -i /home/$USER/.ssh/$PRIVATEKEY -o ConnectTimeout=5 -o StrictHostKeyChecking=no $USER@$ip_address echo "SSH is up" > /dev/null 2>&1; then
             echo "SSH is ready on $VMNAME$chunk."
-            break
+            # Network check: Ping an external server to verify network connectivity
+            if ssh -i /home/$USER/.ssh/$PRIVATEKEY -o ConnectTimeout=5 -o StrictHostKeyChecking=no $USER@$ip_address ping -c 3 google.com > /dev/null 2>&1; then
+                echo "Network is up on $VMNAME$chunk."
+                break
+            else
+                echo "Network check failed on $VMNAME$chunk. Retrying..."
+                sleep 5
+            fi
         else
             echo "Still waiting for SSH on $VMNAME$chunk..."
             sleep 5
