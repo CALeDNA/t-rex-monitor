@@ -55,7 +55,13 @@ do
     if [[ -v SERVER_MAP[${BENSERVER}] ]]; then
         # add socket connection to add job after
         BENSERVERSECOND="${SERVER_MAP[${BENSERVER}]}"
-        /etc/ben/ben client -r $host -n 0 --remote-path $REMOTE_PATH -s $BENSERVERSECOND --remote-socket $BENSERVERSECOND -d
+        /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$BENSERVERSECOND" --remote-socket "$BENSERVERSECOND" -d
+
+        # add assign XL socket
+        if [[ $BENSERVERSECOND == *assign* ]]; then
+            BENSERVERSECOND="${BENSERVERSECOND}xl"
+            /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$BENSERVERSECOND" --remote-socket "$BENSERVERSECOND" -d
+        fi
     fi
     counter=$(( 10#$counter + 1 ))
 done

@@ -17,8 +17,8 @@ while getopts "b:c:d" opt; do
     esac
 done
 
-source $CONFIG
-# gets JSCRED, SSHKEY, NETWORK, SECURITY, SSHCONFIG
+source $CONFIG # gets JSCRED, SSHKEY, NETWORK, SECURITY, SSHCONFIG
+
 VMNAME="${BENSERVER##*/ben-}"
 
 declare -A MAXVM_MAP
@@ -31,6 +31,7 @@ MAXVM_MAP=(
     ["tronko"]=$MAX_TRONKO
     ["qc"]=$MAX_QC
     ["assign"]=$MAX_ASSIGN
+    ["assignxl"]=$MAX_ASSIGNXL
 )
 
 MAXVM="${MAXVM_MAP[${VMNAME}]}"
@@ -117,7 +118,7 @@ else # Scale Up
                 n="$availVM"
             fi
 
-            if [[ $BENSERVER == *assign* ]]; then
+            if [[ $BENSERVER == *assignxl* ]]; then
                 FLAVOR="m3.xl" # need more RAM for tronko assign
             fi
 
