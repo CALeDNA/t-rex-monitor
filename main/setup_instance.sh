@@ -11,7 +11,6 @@ SECURITY=""
 VOLUME=""
 VMNAME="chunk"
 VMNUMBER=0
-SETUP_CONFIG="/home/ubuntu/t-rex-monitor/vm_vars.sh"
 while getopts "u:f:i:k:j:n:m:b:s:w:v:c:" opt; do
     case $opt in
         u) USER="$OPTARG"
@@ -57,7 +56,6 @@ START=$VMNUMBER
 END=$(( VMNUMBER + NUMINSTANCES))
 
 source $JSCRED
-source $SETUP_CONFIG
 
 
 # create and start an instance
