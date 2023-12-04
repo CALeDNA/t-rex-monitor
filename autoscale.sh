@@ -4,7 +4,7 @@
 JS2AUTOSCALING="/home/ubuntu/t-rex-monitor/js2-autoscaling.sh"
 CONFIG="/home/ubuntu/crux/crux/vars/crux_vars.sh"
 SETUP_CONFIG="/home/ubuntu/t-rex-monitor/vm_vars.sh"
-QUEUES=("/etc/ben/queue/qc.ini" "/etc/ben/queue/assign.ini" "/etc/ben/queue/ecopcr.ini" "/etc/ben/queue/blast.ini" "/etc/ben/queue/ac.ini" "/etc/ben/queue/newick.ini" "/etc/ben/queue/tronko.ini")
+QUEUES=("/etc/ben/queue/qc.ini" "/etc/ben/queue/assign.ini" "/etc/ben/queue/assignxl.ini" "/etc/ben/queue/ecopcr.ini" "/etc/ben/queue/blast.ini" "/etc/ben/queue/ac.ini" "/etc/ben/queue/newick.ini" "/etc/ben/queue/tronko.ini")
 
 cd /home/ubuntu/t-rex-monitor
 
