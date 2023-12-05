@@ -24,6 +24,7 @@ sudo cp jobs/ben-jobs.service jobs/ben-jobs.timer supabase/ben-supabase.service 
 /etc/ben/ben server --snapshot /etc/ben/queue/tronko.ini -s /tmp/ben-tronko -d
 /etc/ben/ben server --snapshot /etc/ben/queue/qc.ini -s /tmp/ben-qc -d
 /etc/ben/ben server --snapshot /etc/ben/queue/assign.ini -s /tmp/ben-assign -d
+/etc/ben/ben server --snapshot /etc/ben/queue/assignxl.ini -s /tmp/ben-assignxl -d
 
 sudo systemctl enable ben-logs.service
 sudo systemctl enable ben-jobs.service
