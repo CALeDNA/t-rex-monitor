@@ -3,7 +3,7 @@
 # - get job queues txt file
 # - run supabase_ben.py
 # - upload logs & cleanup ben list
-QUEUES=("/etc/ben/queue/ecopcr.ini" "/etc/ben/queue/blast.ini" "/etc/ben/queue/ac.ini" "/etc/ben/queue/newick.ini" "/etc/ben/queue/tronko.ini" "/etc/ben/queue/qc.ini" "/etc/ben/queue/assign.ini")
+QUEUES=("/etc/ben/queue/ecopcr.ini" "/etc/ben/queue/blast.ini" "/etc/ben/queue/ac.ini" "/etc/ben/queue/newick.ini" "/etc/ben/queue/tronko.ini" "/etc/ben/queue/qc.ini" "/etc/ben/queue/assign.ini" "/etc/ben/queue/assignxl.ini")
 
 supabase() {
     local queue=$1 # /etc/ben/queue/ecopcr.ini

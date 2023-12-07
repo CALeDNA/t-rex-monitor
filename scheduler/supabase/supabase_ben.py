@@ -1,8 +1,23 @@
 import psycopg2
 import sys
+import re
 from datetime import datetime
 from configparser import ConfigParser
 
+sensitive_patterns = [
+    r'AWS_ACCESS_KEY_ID=[\w-]+',
+    r'AWS_SECRET_ACCESS_KEY=[\w-]+',
+    r'AWS_DEFAULT_REGION=[\w-]+',
+    r'AWS_S3_ACCESS_KEY_ID=[\w-]+',
+    r'AWS_S3_SECRET_ACCESS_KEY=[\w-]+',
+    r'AWS_S3_DEFAULT_REGION=[\w-]+',
+    r'AWS_S3_BUCKET=[\w-]+'
+]
+
+def scrub_command(command, sensitive_patterns):
+    for pattern in sensitive_patterns:
+        command = re.sub(pattern, "REDACTED", command)
+    return command
 
 def config(filename='database.ini', section='postgresql'):
     # create a parser
@@ -47,7 +62,9 @@ def update_job_queue(queue,socket):
                     current_entry = {}
                 else:
                     key, value = line.split('=', 1)
-                    current_entry[key.strip()] = value.strip(' "')
+                    if key.strip() == "command":
+                        value = scrub_command(value.strip(' "'), sensitive_patterns)
+                    current_entry[key.strip()] = value
             
             # Append the last entry after the loop
             if current_entry:
