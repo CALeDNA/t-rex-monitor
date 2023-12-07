@@ -676,7 +676,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -691,6 +692,80 @@
         "h": 8,
         "w": 12,
         "x": 0,
+        "y": 25
+      },
+      "id": 51,
+      "options": {
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "_-FiBOIIz"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:8003/assignxl.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Assign Queue",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "_-FiBOIIz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
         "y": 25
       },
       "id": 44,
@@ -749,7 +824,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -763,8 +839,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 25
+        "x": 0,
+        "y": 33
       },
       "id": 49,
       "options": {
@@ -822,7 +898,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -836,7 +913,7 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 33
       },
       "id": 45,
@@ -895,80 +972,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 33
-      },
-      "id": 48,
-      "options": {
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true
-      },
-      "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "columns": [],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "_-FiBOIIz"
-          },
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "refId": "A",
-          "root_selector": "",
-          "source": "url",
-          "type": "json",
-          "url": "http://127.0.0.1:8003/newick.json",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Newick Queue",
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "_-FiBOIIz"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1020,6 +1025,80 @@
         }
       ],
       "title": "Tronko Queue",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "_-FiBOIIz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 41
+      },
+      "id": 48,
+      "options": {
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "_-FiBOIIz"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://127.0.0.1:8003/newick.json",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Newick Queue",
       "type": "table"
     },
     {
@@ -1131,146 +1210,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
           "hide": false,
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
           "hide": false,
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "CPU Usage",
@@ -1342,146 +1301,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
           "hide": false,
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
           "hide": false,
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
-          "hide": false,
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "CPU Usage",
@@ -1583,146 +1422,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
           "hide": false,
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
           "hide": false,
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "Memory Usage",
@@ -1794,146 +1513,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
           "hide": false,
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
           "hide": false,
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100",
-          "hide": false,
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "Memory Usage",
@@ -2035,146 +1634,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
           "hide": false,
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
           "hide": false,
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "FileSystem Usage",
@@ -2246,146 +1725,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
           "hide": false,
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
           "hide": false,
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "(1 - node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100",
-          "hide": false,
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "FileSystem Usage",
@@ -2437,7 +1796,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2488,146 +1848,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
           "hide": false,
-          "legendFormat": "newick01 - {{device}}",
+          "legendFormat": "ecopcr03 - {{device}}",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
           "hide": false,
-          "legendFormat": "newick02 - {{device}}",
+          "legendFormat": "assign00 - {{device}}",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast13 - {{device}}",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast14 - {{device}}",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast15 - {{device}}",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast16 - {{device}}",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast17 - {{device}}",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast18 - {{device}}",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast19 - {{device}}",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast20 - {{device}}",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast21 - {{device}}",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "node_network_up{instance=\"localhost:9100\",job=\"node_export\"}",
-          "hide": false,
-          "legendFormat": "blast22 - {{device}}",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "Network Operational Status",
@@ -2678,7 +1918,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2742,134 +1983,24 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "newick01",
+          "legendFormat": "ecopcr03",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "newick02",
+          "legendFormat": "assign00",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast13",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast14",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast15",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast16",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast17",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast18",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast19",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast20",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast21",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_errs_total{instance=\"localhost:9100\",job=\"node_export\",device=\"enp1s0\"}[$__rate_interval])",
-          "legendFormat": "blast22",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "Network Traffic Errors",
@@ -3002,146 +2133,26 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick01"
+            "uid": "ecopcr03"
           },
           "editorMode": "code",
           "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
           "hide": false,
-          "legendFormat": "newick01 - {{device}}",
+          "legendFormat": "ecopcr03 - {{device}}",
           "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "newick02"
+            "uid": "assign00"
           },
           "editorMode": "code",
           "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
           "hide": false,
-          "legendFormat": "newick02 - {{device}}",
+          "legendFormat": "assign00 - {{device}}",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast13"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast13 - {{device}}",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast14"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast14 - {{device}}",
-          "range": true,
-          "refId": "E"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast15"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast15 - {{device}}",
-          "range": true,
-          "refId": "F"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast16"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast16 - {{device}}",
-          "range": true,
-          "refId": "G"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast17"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast17 - {{device}}",
-          "range": true,
-          "refId": "H"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast18"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast18 - {{device}}",
-          "range": true,
-          "refId": "I"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast19"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast19 - {{device}}",
-          "range": true,
-          "refId": "J"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast20"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast20 - {{device}}",
-          "range": true,
-          "refId": "K"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast21"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast21 - {{device}}",
-          "range": true,
-          "refId": "L"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "blast22"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{device=\"enp1s0\"}[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "blast22 - {{device}}",
-          "range": true,
-          "refId": "M"
         }
       ],
       "title": "Network Traffic",
@@ -3157,13 +2168,13 @@
     "list": []
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "overview",
   "uid": "overview",
-  "version": 1733,
+  "version": 1927,
   "weekStart": ""
 }
