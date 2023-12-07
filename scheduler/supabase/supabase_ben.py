@@ -5,18 +5,18 @@ from datetime import datetime
 from configparser import ConfigParser
 
 sensitive_patterns = [
-    r'AWS_ACCESS_KEY_ID=[\w-]+',
-    r'AWS_SECRET_ACCESS_KEY=[\w-]+',
-    r'AWS_DEFAULT_REGION=[\w-]+',
-    r'AWS_S3_ACCESS_KEY_ID=[\w-]+',
-    r'AWS_S3_SECRET_ACCESS_KEY=[\w-]+',
-    r'AWS_S3_DEFAULT_REGION=[\w-]+',
-    r'AWS_S3_BUCKET=[\w-]+'
+    r'(AWS_ACCESS_KEY_ID=)([^\s]+)',
+    r'(AWS_SECRET_ACCESS_KEY=)([^\s]+)',
+    r'(AWS_DEFAULT_REGION=)([^\s]+)',
+    r'(AWS_S3_ACCESS_KEY_ID=)([^\s]+)',
+    r'(AWS_S3_SECRET_ACCESS_KEY=)([^\s]+)',
+    r'(AWS_S3_DEFAULT_REGION=)([^\s]+)',
+    r'(AWS_S3_BUCKET=)([^\s]+)'
 ]
 
 def scrub_command(command, sensitive_patterns):
     for pattern in sensitive_patterns:
-        command = re.sub(pattern, "REDACTED", command)
+        command = re.sub(pattern, r'\1REDACTED', command)
     return command
 
 def config(filename='database.ini', section='postgresql'):
