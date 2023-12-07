@@ -1,7 +1,7 @@
 import os
 import json
 
-QUEUES=["/etc/ben/queue/qc.ini", "/etc/ben/queue/assign.ini", "/etc/ben/queue/ecopcr.ini", "/etc/ben/queue/blast.ini", "/etc/ben/queue/ac.ini", "/etc/ben/queue/newick.ini", "/etc/ben/queue/tronko.ini"]
+QUEUES=["/etc/ben/queue/qc.ini", "/etc/ben/queue/assign.ini", "/etc/ben/queue/assignxl.ini", "/etc/ben/queue/ecopcr.ini", "/etc/ben/queue/blast.ini", "/etc/ben/queue/ac.ini", "/etc/ben/queue/newick.ini", "/etc/ben/queue/tronko.ini"]
 OUTDIR="/etc/ben/json"
 for queue in QUEUES:
     jobs = []
