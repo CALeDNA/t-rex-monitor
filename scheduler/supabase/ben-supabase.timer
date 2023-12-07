@@ -2,8 +2,7 @@
 Description=Ben Supabase Service Timer
 
 [Timer]
-OnBootSec=15min
-OnUnitActiveSec=1h
+OnCalendar=daily
 Persistent=true
 
 [Install]
