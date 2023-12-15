@@ -67,6 +67,6 @@ endnumber=$(( $linenumber + 7 ))
 sed -i "${linenumber},${endnumber}d" $SSHCONFIG
 
 # remove $NAME from $DATASOURCE
-linenumber=$(grep -n "name: $NAME" $DATASOURCE | cut -d":" -f1)
+linenumber=$(sudo grep -n "name: $NAME" $DATASOURCE | cut -d":" -f1)
 endnumber=$(( $linenumber + 6 ))
 sudo sed -i "${linenumber},${endnumber}d" $DATASOURCE
