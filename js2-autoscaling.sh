@@ -81,7 +81,7 @@ if [ "$SCALE_DOWN" = "TRUE" ]; then
     queuedCount=$((queuedCount - 1)) # remove header
     if [ "$queuedCount" -eq "0" ]; then
         # loop through ben nodes and dismantle unused servers
-        nodes=$($BENPATH nodes -s $BENSERVER | grep $VMNAME)
+        nodes=$($BENPATH nodes -s $BENSERVER | grep "$VMNAME[0-9]")
         while IFS=$' ' read -r -a fields; do
             if [ "${#fields[@]}" -ge 3 ]; then # sanity check
                 name="${fields[1]}"
@@ -97,7 +97,7 @@ if [ "$SCALE_DOWN" = "TRUE" ]; then
         echo "Skipping. $BENSERVER has a pending queue."
     fi
 else # Scale Up
-    benServerLineCount=$($BENPATH nodes -s $BENSERVER | grep $VMNAME | wc -l)
+    benServerLineCount=$($BENPATH nodes -s $BENSERVER | grep -c "$VMNAME[0-9]")
     hostnameLineCount=$(wc -l < $HOSTNAME)
 
     # check ben nodes is less than max and queued > 0
