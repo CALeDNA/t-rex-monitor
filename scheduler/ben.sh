@@ -27,11 +27,13 @@ done
 declare -A SERVER_MAP
 
 SERVER_MAP=(
-    ["/tmp/ben-ecopcr"]="/tmp/ben-blast"
-    ["/tmp/ben-blast"]="/tmp/ben-ac"
-    ["/tmp/ben-ac"]="/tmp/ben-newick"
-    ["/tmp/ben-newick"]="/tmp/ben-tronko"
-    ["/tmp/ben-qc"]="/tmp/ben-assign"
+    ["/tmp/ben-ecopcr"]=("/tmp/ben-blast")
+    ["/tmp/ben-blast"]=("/tmp/ben-ac")
+    ["/tmp/ben-ac"]=("/tmp/ben-newick")
+    ["/tmp/ben-newick"]=("/tmp/ben-tronko")
+    ["/tmp/ben-qc"]=("/tmp/ben-assign" "/tmp/ben-assignxl")
+    ["/tmp/ben-assign"]=("/tmp/ben-assignxl")
+    ["/tmp/ben-assignxl"]=("/tmp/ben-assign")
 )
 
 # make tmp hosts file for parallel-ssh script. only lines after $START
@@ -53,15 +55,10 @@ do
     host="$NAME$counter"
     /etc/ben/ben client -r $host -n $NODES --remote-path $REMOTE_PATH -s $BENSERVER --remote-socket $BENSERVER -d
     if [[ -v SERVER_MAP[${BENSERVER}] ]]; then
-        # add socket connection to add job after
-        BENSERVERSECOND="${SERVER_MAP[${BENSERVER}]}"
-        /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$BENSERVERSECOND" --remote-socket "$BENSERVERSECOND" -d
-
-        # add assign XL socket
-        if [[ $BENSERVERSECOND == *assign* ]]; then
-            BENSERVERSECOND="${BENSERVERSECOND}xl"
-            /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$BENSERVERSECOND" --remote-socket "$BENSERVERSECOND" -d
-        fi
+        # add socket connections to queue jobs
+        for socket in "${SERVER_MAP[${BENSERVER}]}"; do
+            /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$socket" --remote-socket "$socket" -d
+        done
     fi
     counter=$(( 10#$counter + 1 ))
 done
