@@ -27,13 +27,13 @@ done
 declare -A SERVER_MAP
 
 SERVER_MAP=(
-    ["/tmp/ben-ecopcr"]=("/tmp/ben-blast")
-    ["/tmp/ben-blast"]=("/tmp/ben-ac")
-    ["/tmp/ben-ac"]=("/tmp/ben-newick")
-    ["/tmp/ben-newick"]=("/tmp/ben-tronko")
-    ["/tmp/ben-qc"]=("/tmp/ben-assign" "/tmp/ben-assignxl")
-    ["/tmp/ben-assign"]=("/tmp/ben-assignxl")
-    ["/tmp/ben-assignxl"]=("/tmp/ben-assign")
+    ["/tmp/ben-ecopcr"]="/tmp/ben-blast"
+    ["/tmp/ben-blast"]="/tmp/ben-ac"
+    ["/tmp/ben-ac"]="/tmp/ben-newick"
+    ["/tmp/ben-newick"]="/tmp/ben-tronko"
+    ["/tmp/ben-qc"]="/tmp/ben-assign /tmp/ben-assignxl"
+    ["/tmp/ben-assign"]="/tmp/ben-assignxl"
+    ["/tmp/ben-assignxl"]="/tmp/ben-assign"
 )
 
 # make tmp hosts file for parallel-ssh script. only lines after $START
