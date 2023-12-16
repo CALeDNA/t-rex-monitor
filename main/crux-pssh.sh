@@ -37,7 +37,7 @@ if [ "$(wc -l < tmphost)" -eq 1 ]; then
     scp "$CONFIG" "$host:/home/$USER/crux/crux/vars/"
 
     if [ "$ASSIGN" = "TRUE" ]; then
-        scp ./.env $host:/home/$USER/crux/tronko/assign/jwt
+        scp ./.env $host:/home/$USER/crux/tronko/assign/jwt/.env
     fi
 
     ssh "$host" "sudo apt install awscli -y"
@@ -49,7 +49,7 @@ if [ "$(wc -l < tmphost)" -eq 1 ]; then
     fi
 else
     if [ "$ASSIGN" = "TRUE" ]; then
-        parallel-scp -h tmphost ./.env /home/$USER/crux/tronko/assign/jwt
+        parallel-scp -h tmphost ./.env /home/$USER/crux/tronko/assign/jwt/.env
     fi
 
     if [ "$BRANCH" = "master" ]; then
