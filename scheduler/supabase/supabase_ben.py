@@ -14,6 +14,17 @@ sensitive_patterns = [
     r'(AWS_S3_BUCKET=)([^\s]+)'
 ]
 
+flavors = {
+    "/tmp/ben-ecopcr": "m3.large",
+    "/tmp/ben-blast": "m3.large",
+    "/tmp/ben-ac": "m3.large",
+    "/tmp/ben-newick": "m3.large",
+    "/tmp/ben-tronko": "m3.xl",
+    "/tmp/ben-qc": "m3.large",
+    "/tmp/ben-assign": "m3.large",
+    "/tmp/ben-assignxl": "m3.xl",
+}
+
 def scrub_command(command, sensitive_patterns):
     for pattern in sensitive_patterns:
         command = re.sub(pattern, r'\1REDACTED', command)
@@ -86,11 +97,15 @@ def update_job_queue(queue,socket):
                         'node_id': entry["ran_id"],
                         'server': entry["ran_name"],
                         'duration': time_difference,
+                        'durationSeconds': time_difference.total_seconds(),
                         'node_name': entry["ran_name"],
                         'socket': socket,
-                        'command': entry["command"]
+                        'executedAt': start_time,
+                        'instanceType': flavors[socket],
+                        'command': entry["command"],
                     }
                 elif(entry["type"] == "running"):
+                    start_time = datetime.strptime(entry["start_time"], '%Y-%m-%d %H:%M:%S')
                     job_data = {
                         'job_id': entry["id"],
                         'output_dir': entry["stdout_path"],
@@ -99,8 +114,11 @@ def update_job_queue(queue,socket):
                         'node_id': entry["running_id"],
                         'server': entry["running_name"],
                         'duration': "-1",
+                        'durationSeconds': None,
                         'node_name': entry["ran_name"],
                         'socket': socket,
+                        'executedAt': start_time,
+                        'instanceType': flavors[socket],
                         'command': entry["command"]
                     }
                 else:
@@ -112,15 +130,18 @@ def update_job_queue(queue,socket):
                         'node_id': "-1",
                         'server': "WAITING",
                         'duration': "-1",
+                        'durationSeconds': None,
                         'node_name': "WAITING",
                         'socket': socket,
+                        'executedAt': "WAITING",
+                        'instanceType': flavors[socket],
                         'command': entry["command"]
                     }
 
                 try:
                     insert_query = '''
-                        INSERT INTO "SchedulerJobs" (job_id, output_dir, job_name, status, node_id, server, node_name, duration, socket, command)
-                        VALUES (%(job_id)s, %(output_dir)s, %(job_name)s, %(status)s, %(node_id)s, %(server)s, %(node_name)s, %(duration)s, %(socket)s, %(command)s)
+                        INSERT INTO "SchedulerJobs" (job_id, output_dir, job_name, status, node_id, server, node_name, duration, durationSeconds, executedAt, instanceType, socket, command)
+                        VALUES (%(job_id)s, %(output_dir)s, %(job_name)s, %(status)s, %(node_id)s, %(server)s, %(node_name)s, %(duration)s, %(durationSeconds)s, %(executedAt)s, %(instanceType)s, %(socket)s, %(command)s)
                         ON CONFLICT (job_name) DO UPDATE
                         SET
                             output_dir = EXCLUDED.output_dir,
@@ -136,6 +157,9 @@ def update_job_queue(queue,socket):
                                     )::time
                                 )::text
                             ),
+                            durationSeconds = COALESCE("SchedulerJobs".durationSeconds, 0.0) + EXCLUDED.durationSeconds,
+                            executedAt = EXCLUDED.executedAt,
+                            instanceType = EXCLUDED.instanceType,
                             socket = EXCLUDED.socket,
                             command = EXCLUDED.command
                         WHERE "SchedulerJobs".status <> EXCLUDED.status;
