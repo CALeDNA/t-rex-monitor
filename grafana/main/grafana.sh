@@ -41,7 +41,7 @@ if [ $START -gt 0 ]; then
         echo "    editable: true" >> $datasources
         echo "" >> $datasources
     done
-    sudo cat $datasources >> $DATASOURCE
+    sudo bash -c 'cat "$1" >> "$2"' -- "$datasources" "$DATASOURCE"
     rm $datasources
 else
     hostnames=$(cat $HOSTNAME)
