@@ -120,7 +120,7 @@ else # Scale Up
 
             if [[ $BENSERVER == *assignxl* ]]; then
                 FLAVOR=$FLAVOR_ASSIGNXL # need more RAM for tronko assign
-            if [[ $BENSERVER == *blast* ]]; then
+            elif [[ $BENSERVER == *blast* ]]; then
                 FLAVOR=$FLAVOR_BLAST # log efficiency with threads in blast
                 VOLUME=$VOLUME_BLAST
             fi

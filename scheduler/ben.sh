@@ -48,11 +48,8 @@ else
     hostnames=$(cat $HOSTNAME)
 fi
 
-counter=$VMNUMBER
-for line in $hostnames
-do
-    counter=$(printf '%02d' $counter)
-    host="$NAME$counter"
+for line in $hostnames; do
+    host="$line"
     /etc/ben/ben client -r $host -n $NODES --remote-path $REMOTE_PATH -s $BENSERVER --remote-socket $BENSERVER -d
     if [[ -v SERVER_MAP[${BENSERVER}] ]]; then
         # add socket connections to queue jobs
@@ -60,7 +57,6 @@ do
             /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$socket" --remote-socket "$socket" -d
         done
     fi
-    counter=$(( 10#$counter + 1 ))
 done
 
 rm tmphost
