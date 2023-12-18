@@ -75,7 +75,11 @@ def update_job_queue(queue,socket):
                     key, value = line.split('=', 1)
                     if key.strip() == "command":
                         value = scrub_command(value.strip(' "'), sensitive_patterns)
-                    current_entry[key.strip()] = value
+                    elif key.strip() == "type":
+                        if value.strip() != "done":
+                            current_entry = None
+                            break
+                    current_entry[key.strip()] = value.strip().replace('"','')
             
             # Append the last entry after the loop
             if current_entry:

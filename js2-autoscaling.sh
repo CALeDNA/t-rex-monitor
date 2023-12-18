@@ -119,7 +119,10 @@ else # Scale Up
             fi
 
             if [[ $BENSERVER == *assignxl* ]]; then
-                FLAVOR="m3.xl" # need more RAM for tronko assign
+                FLAVOR=$FLAVOR_ASSIGNXL # need more RAM for tronko assign
+            if [[ $BENSERVER == *blast* ]]; then
+                FLAVOR=$FLAVOR_BLAST # log efficiency with threads in blast
+                VOLUME=$VOLUME_BLAST
             fi
 
             ./vm_setup.sh -u $USER -f $FLAVOR -i $IMAGE -k $SSHKEY -j $JSCRED -n $n -m $VMNAME -b $b -v $VOLUME -s $SECURITY -w $NETWORK -c $SSHCONFIG -o 1 -e $BENSERVER
