@@ -52,8 +52,9 @@ for line in $hostnames; do
     host="$line"
     /etc/ben/ben client -r $host -n $NODES --remote-path $REMOTE_PATH -s $BENSERVER --remote-socket $BENSERVER -d
     if [[ -v SERVER_MAP[${BENSERVER}] ]]; then
+        IFS=' ' read -ra SOCKETS <<< "${SERVER_MAP[${BENSERVER}]}"
         # add socket connections to queue jobs
-        for socket in "${SERVER_MAP[${BENSERVER}]}"; do
+        for socket in "${SOCKETS[@]}"; do
             /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$socket" --remote-socket "$socket" -d
         done
     fi
