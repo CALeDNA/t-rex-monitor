@@ -123,6 +123,8 @@ else # Scale Up
             elif [[ $BENSERVER == *blast* ]]; then
                 FLAVOR=$FLAVOR_BLAST # log efficiency with threads in blast
                 VOLUME=$VOLUME_BLAST
+            elif [[ $BENSERVER == *ecopcr* ]]; then
+                VOLUME=$VOLUME_ECOPCR
             fi
 
             ./vm_setup.sh -u $USER -f $FLAVOR -i $IMAGE -k $SSHKEY -j $JSCRED -n $n -m $VMNAME -b $b -v $VOLUME -s $SECURITY -w $NETWORK -c $SSHCONFIG -o 1 -e $BENSERVER
