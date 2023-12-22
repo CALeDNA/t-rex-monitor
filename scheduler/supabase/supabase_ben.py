@@ -88,6 +88,8 @@ def update_job_queue(queue,socket):
             # print(result[0])
 
             for entry in result:
+                if "ran_name" not in entry:
+                    entry["ran_name"] = "."
                 if(entry["type"] == "done"):
                     start_time = datetime.strptime(entry["start_time"], '%Y-%m-%d %H:%M:%S')
                     stop_time = datetime.strptime(entry["stop_time"], '%Y-%m-%d %H:%M:%S')
