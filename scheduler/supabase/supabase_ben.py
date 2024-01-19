@@ -16,10 +16,10 @@ sensitive_patterns = [
 
 flavors = {
     "/tmp/ben-ecopcr": "m3.large",
-    "/tmp/ben-blast": "m3.large",
+    "/tmp/ben-blast": "m3.medium",
     "/tmp/ben-ac": "m3.large",
     "/tmp/ben-newick": "m3.large",
-    "/tmp/ben-tronko": "m3.xl",
+    "/tmp/ben-tronko": "m3.large",
     "/tmp/ben-qc": "m3.large",
     "/tmp/ben-assign": "m3.large",
     "/tmp/ben-assignxl": "m3.xl",
