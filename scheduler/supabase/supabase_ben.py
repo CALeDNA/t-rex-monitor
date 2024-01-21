@@ -146,7 +146,7 @@ def update_job_queue(queue,socket):
 
                 try:
                     insert_query = '''
-                        INSERT INTO "SchedulerJobs" (job_id, output_dir, job_name, status, node_id, server, node_name, duration, durationSeconds, executedAt, instanceType, socket, command)
+                        INSERT INTO "SchedulerJobs" (job_id, output_dir, job_name, status, node_id, server, node_name, duration, "durationSeconds", "executedAt", "instanceType", socket, command)
                         VALUES (%(job_id)s, %(output_dir)s, %(job_name)s, %(status)s, %(node_id)s, %(server)s, %(node_name)s, %(duration)s, %(durationSeconds)s, %(executedAt)s, %(instanceType)s, %(socket)s, %(command)s)
                         ON CONFLICT (job_name) DO UPDATE
                         SET
@@ -163,9 +163,9 @@ def update_job_queue(queue,socket):
                                     )::time
                                 )::text
                             ),
-                            durationSeconds = COALESCE("SchedulerJobs".durationSeconds, 0.0) + EXCLUDED.durationSeconds,
-                            executedAt = EXCLUDED.executedAt,
-                            instanceType = EXCLUDED.instanceType,
+                            "durationSeconds" = COALESCE("SchedulerJobs"."durationSeconds", 0.0) + EXCLUDED."durationSeconds",
+                            "executedAt" = EXCLUDED."executedAt",
+                            "instanceType" = EXCLUDED."instanceType",
                             socket = EXCLUDED.socket,
                             command = EXCLUDED.command
                         WHERE "SchedulerJobs".status <> EXCLUDED.status;
