@@ -122,9 +122,12 @@ else # Scale Up
                 FLAVOR=$FLAVOR_ASSIGNXL # need more RAM for tronko assign
             elif [[ $BENSERVER == *blast* ]]; then
                 FLAVOR=$FLAVOR_BLAST # log efficiency with threads in blast
-                VOLUME=$VOLUME_BLAST
             elif [[ $BENSERVER == *ecopcr* ]]; then
                 VOLUME=$VOLUME_ECOPCR
+            elif [[ $BENSERVER == *qc* ]]; then
+                VOLUME=$VOLUME_QC
+            elif [[ $BENSERVER == *assign* ]]; then
+                VOLUME=$VOLUME_ASSIGN
             fi
 
             ./vm_setup.sh -u $USER -f $FLAVOR -i $IMAGE -k $SSHKEY -j $JSCRED -n $n -m $VMNAME -b $b -v $VOLUME -s $SECURITY -w $NETWORK -c $SSHCONFIG -o 1 -e $BENSERVER
