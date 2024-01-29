@@ -124,6 +124,8 @@ else # Scale Up
                 FLAVOR=$FLAVOR_BLAST # log efficiency with threads in blast
             elif [[ $BENSERVER == *ecopcr* ]]; then
                 VOLUME=$VOLUME_ECOPCR
+            elif [[ $BENSERVER == *tronko* ]]; then
+                VOLUME=$VOLUME_TRONKO
             elif [[ $BENSERVER == *qc* ]]; then
                 VOLUME=$VOLUME_QC
             elif [[ $BENSERVER == *assign* ]]; then
