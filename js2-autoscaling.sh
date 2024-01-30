@@ -46,7 +46,7 @@ getB() {
         local b="0"
     fi
 
-    numbers=($(grep "$name" "$hostname" | sed "s/$name\([0-9]\+\)/\1/g"))
+    numbers=($(grep "$name" "$hostname" | sed 's/[^0-9]//g'))
     if [ ${#numbers[@]} -eq 0 ]; then
         echo "$b"
     else
