@@ -32,8 +32,8 @@ SERVER_MAP=(
     ["/tmp/ben-ac"]="/tmp/ben-newick"
     ["/tmp/ben-newick"]="/tmp/ben-tronko"
     ["/tmp/ben-qc"]="/tmp/ben-assign /tmp/ben-assignxl"
-    ["/tmp/ben-assign"]="/tmp/ben-assignxl"
-    ["/tmp/ben-assignxl"]="/tmp/ben-assign"
+    ["/tmp/ben-assign"]="/tmp/ben-assignxl /tmp/ben-notif"
+    ["/tmp/ben-assignxl"]="/tmp/ben-assign /tmp/ben-notif"
 )
 
 # make tmp hosts file for parallel-ssh script. only lines after $START
