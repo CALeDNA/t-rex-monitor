@@ -16,10 +16,10 @@ sensitive_patterns = [
 
 flavors = {
     "/tmp/ben-ecopcr": "m3.large",
-    "/tmp/ben-blast": "m3.large",
+    "/tmp/ben-blast": "m3.medium",
     "/tmp/ben-ac": "m3.large",
     "/tmp/ben-newick": "m3.large",
-    "/tmp/ben-tronko": "m3.xl",
+    "/tmp/ben-tronko": "m3.large",
     "/tmp/ben-qc": "m3.large",
     "/tmp/ben-assign": "m3.large",
     "/tmp/ben-assignxl": "m3.xl",
@@ -75,7 +75,11 @@ def update_job_queue(queue,socket):
                     key, value = line.split('=', 1)
                     if key.strip() == "command":
                         value = scrub_command(value.strip(' "'), sensitive_patterns)
-                    current_entry[key.strip()] = value
+                    elif key.strip() == "type":
+                        if value.strip() != "done":
+                            current_entry = None
+                            break
+                    current_entry[key.strip()] = value.strip().replace('"','')
             
             # Append the last entry after the loop
             if current_entry:
@@ -84,6 +88,8 @@ def update_job_queue(queue,socket):
             # print(result[0])
 
             for entry in result:
+                if "ran_name" not in entry:
+                    entry["ran_name"] = "."
                 if(entry["type"] == "done"):
                     start_time = datetime.strptime(entry["start_time"], '%Y-%m-%d %H:%M:%S')
                     stop_time = datetime.strptime(entry["stop_time"], '%Y-%m-%d %H:%M:%S')
@@ -140,7 +146,7 @@ def update_job_queue(queue,socket):
 
                 try:
                     insert_query = '''
-                        INSERT INTO "SchedulerJobs" (job_id, output_dir, job_name, status, node_id, server, node_name, duration, durationSeconds, executedAt, instanceType, socket, command)
+                        INSERT INTO "SchedulerJobs" (job_id, output_dir, job_name, status, node_id, server, node_name, duration, "durationSeconds", "executedAt", "instanceType", socket, command)
                         VALUES (%(job_id)s, %(output_dir)s, %(job_name)s, %(status)s, %(node_id)s, %(server)s, %(node_name)s, %(duration)s, %(durationSeconds)s, %(executedAt)s, %(instanceType)s, %(socket)s, %(command)s)
                         ON CONFLICT (job_name) DO UPDATE
                         SET
@@ -157,9 +163,9 @@ def update_job_queue(queue,socket):
                                     )::time
                                 )::text
                             ),
-                            durationSeconds = COALESCE("SchedulerJobs".durationSeconds, 0.0) + EXCLUDED.durationSeconds,
-                            executedAt = EXCLUDED.executedAt,
-                            instanceType = EXCLUDED.instanceType,
+                            "durationSeconds" = COALESCE("SchedulerJobs"."durationSeconds", 0.0) + EXCLUDED."durationSeconds",
+                            "executedAt" = EXCLUDED."executedAt",
+                            "instanceType" = EXCLUDED."instanceType",
                             socket = EXCLUDED.socket,
                             command = EXCLUDED.command
                         WHERE "SchedulerJobs".status <> EXCLUDED.status;

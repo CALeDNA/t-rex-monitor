@@ -31,10 +31,18 @@ else
     echo "The file $HOSTNAME does not exist or is not readable."
 fi
 
+# create tmp dir for large ini files
+mkdir -p "./tmp_$BENNAME"
+mv "/etc/ben/queue/$BENNAME.ini" .
 
 /etc/ben/ben server --snapshot /etc/ben/queue/$BENNAME.ini -s $BENSERVER -d
 
-/etc/ben/ben add -i /etc/ben/queue/$BENNAME.ini -s $BENSERVER
+awk "/^\[job\]/{close(f); f=\"./tmp_$BENNAME/split\"++i\".ini\"} {print > f}" "$BENNAME.ini"
+for file in "./tmp_$BENNAME"/*; do
+    /etc/ben/ben add -i "$file" -s "$BENSERVER"
+done
+rm -r $BENNAME.ini tmp_$BENNAME
+
 
 
 # Add client VM's

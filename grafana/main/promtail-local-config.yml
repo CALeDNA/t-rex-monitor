@@ -11,8 +11,38 @@ scrape_configs:
   - targets:
       - localhost
     labels:
-      job: ben_logs
-      __path__: /etc/ben/output/*
+      job: ben_ecopcr_logs
+      __path__: /etc/ben/output/*-ecopcr-*
+  - targets:
+      - localhost
+    labels:
+      job: ben_blast_logs
+      __path__: /etc/ben/output/*-blast-*
+  - targets:
+      - localhost
+    labels:
+      job: ben_ac_logs
+      __path__: /etc/ben/output/*-ac-*
+  - targets:
+      - localhost
+    labels:
+      job: ben_newick_logs
+      __path__: /etc/ben/output/*-newick-*
+  - targets:
+      - localhost
+    labels:
+      job: ben_tronko_logs
+      __path__: /etc/ben/output/*-tronko-*
+  - targets:
+      - localhost
+    labels:
+      job: ben_qc_logs
+      __path__: /etc/ben/output/*-qc-*
+  - targets:
+      - localhost
+    labels:
+      job: ben_assign_logs
+      __path__: /etc/ben/output/*-assign*
   - targets:
       - localhost
     labels:

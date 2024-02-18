@@ -32,8 +32,8 @@ SERVER_MAP=(
     ["/tmp/ben-ac"]="/tmp/ben-newick"
     ["/tmp/ben-newick"]="/tmp/ben-tronko"
     ["/tmp/ben-qc"]="/tmp/ben-assign /tmp/ben-assignxl"
-    ["/tmp/ben-assign"]="/tmp/ben-assignxl"
-    ["/tmp/ben-assignxl"]="/tmp/ben-assign"
+    ["/tmp/ben-assign"]="/tmp/ben-assignxl /tmp/ben-notif"
+    ["/tmp/ben-assignxl"]="/tmp/ben-assign /tmp/ben-notif"
 )
 
 # make tmp hosts file for parallel-ssh script. only lines after $START
@@ -48,19 +48,16 @@ else
     hostnames=$(cat $HOSTNAME)
 fi
 
-counter=$VMNUMBER
-for line in $hostnames
-do
-    counter=$(printf '%02d' $counter)
-    host="$NAME$counter"
+for line in $hostnames; do
+    host="$line"
     /etc/ben/ben client -r $host -n $NODES --remote-path $REMOTE_PATH -s $BENSERVER --remote-socket $BENSERVER -d
     if [[ -v SERVER_MAP[${BENSERVER}] ]]; then
+        IFS=' ' read -ra SOCKETS <<< "${SERVER_MAP[${BENSERVER}]}"
         # add socket connections to queue jobs
-        for socket in "${SERVER_MAP[${BENSERVER}]}"; do
+        for socket in "${SOCKETS[@]}"; do
             /etc/ben/ben client -r "$host" -n 0 --remote-path "$REMOTE_PATH" -s "$socket" --remote-socket "$socket" -d
         done
     fi
-    counter=$(( 10#$counter + 1 ))
 done
 
 rm tmphost

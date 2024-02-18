@@ -33,17 +33,15 @@ if [ $START -gt 0 ]; then
     for line in $hostnames
     do
         address=$(ssh -G $line | awk '/^hostname / { print $2 }')
-        counter=$(printf '%02d' $counter)
-        echo "  - name: $NAME$counter" >> $datasources
+        echo "  - name: $line" >> $datasources
         echo "    type: prometheus" >> $datasources
         echo "    url: http://$address:9090" >> $datasources
-        echo "    uid: $NAME$counter" >> $datasources
+        echo "    uid: $line" >> $datasources
         echo "    readOnly: false" >> $datasources
         echo "    editable: true" >> $datasources
         echo "" >> $datasources
-        counter=$(( 10#$counter + 1 ))
     done
-    sudo cat $datasources >> $DATASOURCE
+    sudo bash -c 'cat "$1" >> "$2"' -- "$datasources" "$DATASOURCE"
     rm $datasources
 else
     hostnames=$(cat $HOSTNAME)
@@ -52,15 +50,13 @@ else
     for line in $hostnames
     do
         address=$(ssh -G $line | awk '/^hostname / { print $2 }')
-        counter=$(printf '%02d' $counter)
-        echo "  - name: $NAME$counter" >> $datasources
+        echo "  - name: $line" >> $datasources
         echo "    type: prometheus" >> $datasources
         echo "    url: http://$address:9090" >> $datasources
-        echo "    uid: $NAME$counter" >> $datasources
+        echo "    uid: $line" >> $datasources
         echo "    readOnly: false" >> $datasources
         echo "    editable: true" >> $datasources
         echo "" >> $datasources
-        counter=$(( 10#$counter + 1 ))
     done
     sudo mv $datasources $DATASOURCE
 fi

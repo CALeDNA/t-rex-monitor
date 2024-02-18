@@ -46,7 +46,7 @@ getB() {
         local b="0"
     fi
 
-    numbers=($(grep "$name" "$hostname" | sed "s/$name\([0-9]\+\)/\1/g"))
+    numbers=($(grep "$name" "$hostname" | sed 's/[^0-9]//g'))
     if [ ${#numbers[@]} -eq 0 ]; then
         echo "$b"
     else
@@ -119,7 +119,17 @@ else # Scale Up
             fi
 
             if [[ $BENSERVER == *assignxl* ]]; then
-                FLAVOR="m3.xl" # need more RAM for tronko assign
+                FLAVOR=$FLAVOR_ASSIGNXL # need more RAM for tronko assign
+            elif [[ $BENSERVER == *blast* ]]; then
+                FLAVOR=$FLAVOR_BLAST # log efficiency with threads in blast
+            elif [[ $BENSERVER == *ecopcr* ]]; then
+                VOLUME=$VOLUME_ECOPCR
+            elif [[ $BENSERVER == *tronko* ]]; then
+                VOLUME=$VOLUME_TRONKO
+            elif [[ $BENSERVER == *qc* ]]; then
+                VOLUME=$VOLUME_QC
+            elif [[ $BENSERVER == *assign* ]]; then
+                VOLUME=$VOLUME_ASSIGN
             fi
 
             ./vm_setup.sh -u $USER -f $FLAVOR -i $IMAGE -k $SSHKEY -j $JSCRED -n $n -m $VMNAME -b $b -v $VOLUME -s $SECURITY -w $NETWORK -c $SSHCONFIG -o 1 -e $BENSERVER

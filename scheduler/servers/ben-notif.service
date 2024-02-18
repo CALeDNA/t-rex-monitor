@@ -1,5 +1,5 @@
 [Unit]
-Description=Ben Blast Job Scheduler Server
+Description=Ben JWT Notification Server
 After=network-online.target
 
 [Service]
@@ -7,8 +7,8 @@ User=ubuntu
 Type=forking
 WorkingDirectory=/home/ubuntu/t-rex-monitor/scheduler/servers
 Environment="PATH=/usr/local/bin:/usr/bin:/bin:/home/ubuntu/miniconda/envs/webhook/bin"
-ExecStart=/bin/bash ./ben-servers.sh "blast" "/tmp/ben-blast"
-TimeoutSec=3600
+ExecStart=/bin/bash ./ben-servers.sh "notif" "/tmp/ben-notif"
+TimeoutSec=600
 Restart=no
 RestartSec=5s
 
