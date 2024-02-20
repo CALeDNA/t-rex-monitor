@@ -29,15 +29,15 @@ if [ "$(wc -l < tmphost)" -eq 1 ]; then
     host=$(cat tmphost)
 
     if [ "$BRANCH" = "master" ]; then
-        ssh "$host" "git clone https://github.com/CALeDNA/crux.git"
+        ssh "$host" "git clone https://github.com/eDNA-Explorer/t-rex.git"
     else
-        ssh "$host" "git clone -b $BRANCH https://github.com/CALeDNA/crux.git"
+        ssh "$host" "git clone -b $BRANCH https://github.com/eDNA-Explorer/t-rex.git"
     fi
 
-    scp "$CONFIG" "$host:/home/$USER/crux/crux/vars/"
+    scp "$CONFIG" "$host:/home/$USER/t-rex/crux/vars/"
 
     if [ "$ASSIGN" = "TRUE" ]; then
-        scp ./.env $host:/home/$USER/crux/tronko/assign/jwt/.env
+        scp ./.env $host:/home/$USER/t-rex/tronko/assign/jwt/.env
     fi
 
     ssh "$host" "sudo apt install awscli -y"
@@ -49,16 +49,16 @@ if [ "$(wc -l < tmphost)" -eq 1 ]; then
     fi
 else
     if [ "$ASSIGN" = "TRUE" ]; then
-        parallel-scp -h tmphost ./.env /home/$USER/crux/tronko/assign/jwt/.env
+        parallel-scp -h tmphost ./.env /home/$USER/t-rex/tronko/assign/jwt/.env
     fi
 
     if [ "$BRANCH" = "master" ]; then
-        parallel-ssh -i -t 0 -h tmphost "git clone https://github.com/CALeDNA/crux.git"
+        parallel-ssh -i -t 0 -h tmphost "git clone https://github.com/eDNA-Explorer/t-rex.git"
     else
-        parallel-ssh -i -t 0 -h tmphost "git clone -b $BRANCH https://github.com/CALeDNA/crux.git"
+        parallel-ssh -i -t 0 -h tmphost "git clone -b $BRANCH https://github.com/eDNA-Explorer/t-rex.git"
     fi
 
-    parallel-scp -h tmphost $CONFIG /home/$USER/crux/crux/vars/
+    parallel-scp -h tmphost $CONFIG /home/$USER/t-rex/crux/vars/
 
     parallel-ssh -i -t 0 -h tmphost "sudo apt install awscli -y"
 
